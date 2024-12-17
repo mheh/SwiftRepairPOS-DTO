@@ -33,8 +33,7 @@ final class MWServerModelsTests: XCTestCase {
     /// Try to create a URL request to see if we're authenticated
     func testConfigObjectRequestWithAuthTokenHappy() throws {
         serverConfig.authToken = Auth_DTO.Token.init(accessToken: "12345", accessExpiration: "\(Date())",
-                                                   refreshToken: "refresh_string", refreshExpiration: "\(Date())",
-                                                   deviceID: UUID())
+                                                   refreshToken: "refresh_string", refreshExpiration: "\(Date())")
         XCTAssertNotNil(serverConfig.authToken)
 
         let currentSessionRequest = User_DTO.V1.CurrentUserRequest.init()
@@ -63,8 +62,7 @@ final class MWServerModelsTests: XCTestCase {
         // pretend we're the server, form a response
         let loginResponse = Auth_DTO.Login.Response(
             token: .init(accessToken: "12345", accessExpiration: "\(Date())",
-                         refreshToken: "refresh_token", refreshExpiration: "\(Date())",
-                         deviceID: UUID()),
+                         refreshToken: "refresh_token", refreshExpiration: "\(Date())"),
             user: .init(id: UUID(), username: "johnjacob", fullname: "John Jacob", email: "test@test.com", isAdmin: false, isActive: true, isReset: true)
                     //.init(id: UUID(), fullname: "John Jacob", email: "test@test.com", isAdmin: false)
         )
