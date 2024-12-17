@@ -16,7 +16,7 @@ extension V1: MWDTO_CRUDModel {
     
     
     /// User model returned from server
-    public struct Model: Codable, Identifiable, Hashable {
+    public struct Model: Codable, Identifiable, Hashable, Sendable {
         /// System user's UUID
         public var id: UUID
         
@@ -68,7 +68,7 @@ extension V1: MWDTO_CRUDModel {
     
     /// The model to create a new user on the server
     /// The returned `Model` will be a reset user
-    public struct CreateRequestModel: Codable {
+    public struct CreateRequestModel: Codable, Sendable {
         
         /// Username
         public var username: String
@@ -111,7 +111,7 @@ extension V1: MWDTO_CRUDModel {
     
     
     /// The model to perform update requests on a user
-    public struct UpdateRequestModel: Codable {
+    public struct UpdateRequestModel: Codable, Sendable {
         
         /// Changing their username?
         public var username: String?
@@ -159,7 +159,7 @@ extension V1: MWDTO_CRUDModel {
     
     
     /// Update a users password
-    public struct UpdatePasswordModel: Codable {
+    public struct UpdatePasswordModel: Codable, Sendable {
         /// New password
         public var password: String
         /// Confirm new password
@@ -176,7 +176,7 @@ extension V1: MWDTO_CRUDModel {
     
     
     /// Model for updating a user's permissions
-    public struct UpdatePermissionsRequestModel: Codable {
+    public struct UpdatePermissionsRequestModel: Codable, Sendable {
         
         /// Users permission
         public var permissions: UserPermissions
@@ -197,7 +197,7 @@ extension V1: MWDTO_CRUDModel {
 extension V1 {
     
     /// Various user permissions for different routes/actions. Passed in the JWT token.
-    public struct UserPermissions: Codable, Hashable {
+    public struct UserPermissions: Codable, Hashable, Sendable {
         
         /// Permission settings for editing `User` models
         public var users: UserPermissions_User
@@ -254,7 +254,7 @@ extension V1 {
     // MARK: - User Permissions for `User` routes
     
     /// Permissions for `User` routes
-    public struct UserPermissions_User: OptionSet, Codable {
+    public struct UserPermissions_User: OptionSet, Codable, Sendable {
         public let rawValue: Int64
 
         
@@ -337,7 +337,7 @@ extension V1 {
     // MARK: - User Permissions for `Product` routes
     
     /// Permissions for `Product` routes
-    public struct UserPermissions_Product: OptionSet, Codable {
+    public struct UserPermissions_Product: OptionSet, Codable, Sendable {
         public let rawValue: Int64
         
         // MARK: C
@@ -441,7 +441,7 @@ extension V1 {
     // MARK: - User Permissions for `Server Settings` routes
     
     /// Permissions for `Server Settings` routes
-    public struct UserPermissions_ServerSettings: OptionSet, Codable {
+    public struct UserPermissions_ServerSettings: OptionSet, Codable, Sendable {
         public let rawValue: Int64
         
         // MARK: C
@@ -548,7 +548,7 @@ extension V1 {
     // MARK: User Permissions for `LineItem` routes/actions
     
     /// Permissions for `LineItem` routes/actions
-    public struct UserPermissions_LineItem: OptionSet, Codable, RawRepresentable {
+    public struct UserPermissions_LineItem: OptionSet, Codable, RawRepresentable, Sendable {
         public let rawValue: Int64
         
         // MARK: C

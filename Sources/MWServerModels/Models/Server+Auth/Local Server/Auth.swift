@@ -8,7 +8,7 @@ public struct Auth_DTO {}
 // MARK: - Token Model
 extension Auth_DTO {
     /// JWT Token returned from server
-    public struct Token: Codable {
+    public struct Token: Codable, Sendable {
         /// The access token
         public var accessToken: String
         /// Access token expiration date
@@ -49,7 +49,7 @@ extension Auth_DTO {
         //
         
         /// Login request to server
-        public struct Body: Codable {
+        public struct Body: Codable, Sendable {
             /// Email, validated as format xx@xx.xx
             public var email: String
             /// Password, validated as !.empty
@@ -62,7 +62,7 @@ extension Auth_DTO {
         }
         
         /// Login response from server
-        public struct Response: Codable {
+        public struct Response: Codable, Sendable {
             /// Token information
             public var token: Token
             /// User who has access to this token
@@ -93,7 +93,7 @@ extension Auth_DTO {
         }
         
         /// Refresh token request to server
-        public struct Body: Codable {
+        public struct Body: Codable, Sendable {
             /// Refresh token to refresh
             public var refreshToken: String
             
